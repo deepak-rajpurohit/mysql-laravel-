@@ -23,7 +23,7 @@ class StudentController extends Controller
 
         function list(){
 
-            $studentData = Student::paginate(2);
+            $studentData = Student::paginate(5);
             return view('list-student',['students'=>$studentData]);
         }
 
@@ -60,5 +60,14 @@ class StudentController extends Controller
                 $studentData = Student::where('name','like',"%$request->search%")->get();
                 return view('list-student',['students'=>$studentData,'search'=>$request->search]);
                 // return $request->search;
+            }
+
+            function deleteMultiple(Request $request){
+                $result = Student::destroy($request->ids);
+                if($result){
+                    return redirect('list');
+                }else{
+                    return "Records not deleted";
+                }
             }
 }

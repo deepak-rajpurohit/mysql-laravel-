@@ -7,9 +7,12 @@
         value="{{@$search}}"/>
         <button>Search</button>
     </form>
+    <form action="delete-multi" method="post">
+        @csrf
     <table border="2">
         {{-- @csrf --}}
         <tr>
+            <td>Select</td>
             <td>ID</td>
             <td>Name</td>
             <td>Email</td>
@@ -20,6 +23,7 @@
         </tr>
         @foreach ($students as $student )
         <tr>
+            <td><input type="checkbox" name="ids[]" value="{{ $student->id }}"></td>
             <td>{{ $student->id }}</td>
             <td>{{ $student->name }}</td>
             <td>{{ $student->email }}</td>
@@ -33,8 +37,12 @@
 
         </tr>
 
+
         @endforeach
     </table>
+    <button>Delete</button>
+</form>
+<br><br>
     {{ $students->links() }}
 
     <style>
