@@ -40,4 +40,25 @@ class StudentController extends Controller
                 $student  =Student::find($id);
                 return view('edit-student',['data'=>$student]);
             }
+
+            function editStudent(Request $request, $id){
+                $student = Student::find($id);
+                $student->name=$request->name;
+                $student->email=$request->email;
+                $student->phone=$request->phone;
+
+                // return $id;
+                if($student->save()){
+                    return redirect('list');
+                }else{
+                    return "update not successful";
+                }
+
+            }
+
+            function search(Request $request){
+                $studentData = Student::where('name','like',"%$request->search%")->get();
+                return view('list-student',['students'=>$studentData,'search'=>$request->search]);
+                // return $request->search;
+            }
 }

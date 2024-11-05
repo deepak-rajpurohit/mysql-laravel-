@@ -1,8 +1,14 @@
 <div>
     <h1>Student list</h1>
     {{-- {{ print_r($students) }} --}}
+    <form action="search" method="get">
+        {{-- @csrf --}}
+        <input type="text" placeholder="Serch with name" name="search"
+        value="{{@$search}}"/>
+        <button>Search</button>
+    </form>
     <table border="2">
-        @csrf
+        {{-- @csrf --}}
         <tr>
             <td>ID</td>
             <td>Name</td>
