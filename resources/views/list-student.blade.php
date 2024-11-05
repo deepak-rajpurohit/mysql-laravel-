@@ -35,4 +35,11 @@
 
         @endforeach
     </table>
+    {{ $students->links() }}
+
+    <style>
+        .w-5.h-5{
+            width:20px;
+        }
+    </style>
 </div>
